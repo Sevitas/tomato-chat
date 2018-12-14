@@ -12,6 +12,7 @@ export interface ILoginFormOwnProps {
 export interface ILoginFormDispatchProps {
     readonly onUserAdd: (username: string) => void;
     readonly onUserLogin: (id: Uuid) => void;
+    readonly onUserAuthentication: (email: string) => void;
 }
 
 type IProps = ILoginFormOwnProps & ILoginFormDispatchProps;
@@ -32,7 +33,6 @@ export class LoginForm extends React.Component<IProps, ILoginState> {
     };
     handleSubmit = (event: any) => {
         event.preventDefault();
-
         // TODO: Move - this needs to be handled by thunk
         const newUser = this.props.users.find((user: IUser) => (user.nickname === this.state.username));
         if (newUser === null || newUser === undefined) {
